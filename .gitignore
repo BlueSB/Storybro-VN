@@ -1,0 +1,6 @@
+tmp/
+log.txt
+*.rpyc
+*.bak
+game/saves/
+*.rpyb

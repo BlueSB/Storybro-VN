@@ -4,14 +4,31 @@
 # eg. image eileen happy = "eileen_happy.png"
 
 # Declare characters used by this game.
-define e = Character('Eileen', color="#c8ffc8")
-
+define blondie = Character('Blondie', color="#e1e823")
+define glasses = Character('Glasses', color="#785f24")
+define raven = Character('Raven', color="#6b4b64")
+define birthday = Character('Birthday', color="#2e0c85")
+define homely = Character('Homely', color="#d62d2d")
+define storybro = Character('Storybro', color="#000000")
 
 # The game starts here.
 label start:
-
-    e "You've created a new Ren'Py game."
-
-    e "Once you add a story, pictures, and music, you can release it to the world!"
-
+    storybro "Which girl should I pick?"
+    
+    menu:
+        "Best girl":
+            jump best
+        "Worst girl":
+            jump worst
+            
+label best:
+    homely "I knew you'd pick me!"
+    jump bad_end
+    
+label worst:
+    raven "I knew you'd pick me!"
+    jump bad_end
+    
+label bad_end:
+    "BAD END"
     return

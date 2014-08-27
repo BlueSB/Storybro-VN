@@ -4,3 +4,5 @@ log.txt
 *.bak
 game/saves/
 *.rpyb
+errors.txt
+traceback.txt

@@ -1,0 +1,21 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 113, in script
+    jump start3
+ScriptError: could not find label 'start3'.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 113, in script
+    jump start3
+  File "C:\Users\Blue\Desktop\Storybro\VN\renpy-6.17.7-sdk\renpy\ast.py", line 1432, in execute
+    rv = renpy.game.script.lookup(target)
+  File "C:\Users\Blue\Desktop\Storybro\VN\renpy-6.17.7-sdk\renpy\script.py", line 549, in lookup
+    raise ScriptError("could not find label '%s'." % str(label))
+ScriptError: could not find label 'start3'.
+
+Windows-7-6.1.7601-SP1
+Ren'Py 6.17.7.521
+Storybro's Magically Lewd Sleepover Adventure 0.0

@@ -20,7 +20,12 @@ image heart = "Heart.png"
 image frogbro = "forever.jpg"
 
 # The game starts here.
+
+
+
 label start:
+    $ me_genderboy = True # Used for Context Sensitive Boy/Girl prompts. Boy is True, Girl is False. 
+    
     scene bg sleepy
     sb "Yikes! you overslept!"
     sb "Hello! sorry to keep you waiting!"
@@ -37,94 +42,80 @@ label start:
     
     menu:
         "BOY":
-            jump startboy
+            jump startboth
+            $ me_genderboy = True
         "GIRL":
-            jump startgirl
+            $ me_genderboy = False
+            jump startboth
 
             
             
             
-label startboy:
-    show woody boy
-    sb "Now, what did you say your name was?"
+label startboth:
     
-    menu:
-        "RED":
-            jump startred
-        "BLUE":
-            jump startblue
-        "YELLOW":
-           jump startyellow
-        "DICKS":
-           jump startdicks
+    
+    
+    if me_genderboy:
+        show woody boy
+        sb "Now, what did you say your name was?"
+    
+        menu:
+            "RED":
+                jump startred
+            "BLUE":
+                jump startblue
+            "YELLOW":
+               jump startyellow
+            "DICKS":
+               jump startdicks
+    else:
+        show woody girl
+        sb "Now, what did you say your name was?"
+        menu:
+            "RED":
+                jump startred
+            "BLUE":
+                jump startblue
+            "YELLOW":
+               jump startyellow
+            "CUNTS":
+               jump startcunts
            
+    
            
-label startred:
-    sb "RED, are you ready?"
-    jump startm2
-    
-label startblue:
-    sb "BLUE, are you ready?"
-    jump startm2
-    
-label startyellow:
-    sb "YELLOW, are you ready?"
-    jump startm2
+
     
 label startdicks:
     sb "DICKS, are you ready?"
-    jump startm2
-
-    
-    
-    
-label startgirl:
-    show woody girl
-    sb "Now, what did you say your name was?"
-    
-    menu:
-        "RED":
-            jump startfred
-        "BLUE":
-            jump startfblue
-        "YELLOW":
-           jump startfyellow
-        "CUNTS":
-           jump startcunts
-           
-           
-label startfred:
+    jump start2
+        
+label startred:
     sb "RED, are you ready?"
-    jump startf2
+    jump start2
     
-label startfblue:
+label startblue:
     sb "BLUE, are you ready?"
-    jump startf2
+    jump start2
     
-label startfyellow:
+label startyellow:
     sb "YELLOW, are you ready?"
-    jump startf2
+    jump start2
     
 label startcunts:
     sb "CUNTS, are you ready?"
-    jump startf2
+    jump start2
  
  
-label startm2:
+label start2:
     sb "Your very own 'Women' story is about to unfold"
     sb "You'll face fun times, and tough challenges"
     sb "A world of dreams and adventures with Women awaits! Let's Go!"
-    jump startm3
-
-label startf2:
-    sb "Your very own 'Women' story is about to unfold"
-    sb "You'll face fun times, and tough challenges"
-    sb "A world of dreams and adventures with Women awaits! Let's Go!"
-    jump startf3
+    jump start3
     
 
 
-label startm3:
+label start3:
+if me_genderboy:
     sb "You grew up as an awkward. Somewhat nerdy, but generally likeable guy"
     sb "Unluckily, you're not much of a hit with men, you've grown up around women your entire life"
     sb "Not that you mind"
@@ -145,11 +136,10 @@ label startm3:
     
     menu:
         "Sure! I'd love to join ya'll":
-            jump startm4
+            jump start4
         "I'd better not, my parents want me home for dinner":
             jump FROG_END
-            
-label startf3:
+else:
     sb "You grew up as an awkward. Somewhat nerdy, but generally likeable gay"
     sb "Unluckily, you're not much of a hit with men, you've grown up around women your entire life"
     sb "Not that you mind"
@@ -169,7 +159,7 @@ label startf3:
     
     menu:
         "Sure! I'd love to join ya'll":
-            jump startf4
+            jump start4
         "I'd better not, my parents want me home for dinner":
             jump FROG_END
     
@@ -184,8 +174,17 @@ label FROG_END:
     return
 
 
-    
-label startf4:
+label start4:
+if me_genderboy:
+    sb "You agree to the sleepover, why not right?"
+    sb "The other guy doesn't seem to think so, he's either not invited or he has to go home for dinner"
+    sb "Friends are more important than spaghetti anyway"
+    sb "plus it's been ages since you've been to a sleepover"
+    sb "Your best friend, the black haired girl. She pretty much convinces them you have to come with"
+    sb "So this'll be interesting you think, as the limo pulls up to the lawn of the birthday girl's house"
+    jump male_end
+
+else:         
     sb "You agree to the sleepover, why not right?"
     sb "Friends are more important than spaghetti anyway"
     sb "plus it's been ages since you've been to a sleepover"
@@ -199,15 +198,7 @@ label startf4:
     sb "You figure you can just tell the birthday girl's parents he's gay. That always works"
     jump female_end
 
-label startm4:
-    sb "You agree to the sleepover, why not right?"
-    sb "The other guy doesn't seem to think so, he's either not invited or he has to go home for dinner"
-    sb "Friends are more important than spaghetti anyway"
-    sb "plus it's been ages since you've been to a sleepover"
-    sb "Your best friend, the black haired girl. She pretty much convinces them you have to come with"
-    sb "So this'll be interesting you think, as the limo pulls up to the lawn of the birthday girl's house"
-    jump male_end
-            
+
 label female_end:
     scene heart
     "THE RIDE NEVER ENDS, except here... M'lday"

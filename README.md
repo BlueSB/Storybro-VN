@@ -1,6 +1,11 @@
 ## Storybro's Magically Lewd Sleepover Adventure: Visual Novel Edition ##
 
-This is the main page for the visual novel adaptation. We are currently looking for artists; both background and character.
+This is the main page for the visual novel adaptation. We are currently looking for:
+ 
+  - Artists (background, character, concept)
+  - Music composers
+
+Development is tracked on our [Trello](https://trello.com/b/qJP38bRf/storybro-s-magically-lewd-visual-novel-adventure) board. To join, first you'll need to join our Skype group; the instructions for doing so are in the [Google Doc](https://docs.google.com/document/d/1KvjPwwYXYNMopylbhQNl5e3_UFvV8qP_We72xWYCmao/edit?pli=1#) for the story. 
 
 To use this project in [Ren'Py](www.renpy.org), just clone this project to your projects folder. This is usually `Documents/Ren'Py/` or `Documents/Ren'Py/renpy-[version]-sdk`. In Linux-style commands:
 

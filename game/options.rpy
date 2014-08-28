@@ -286,3 +286,8 @@ init -1 python hide:
 
     #########################################
     ## More customizations can go here.
+    
+    #Autodefines Images -Blue
+    config.automatic_images = [ ' ', '_', '/' ]
+    #Any images in our game folder, if they are in a seperate directory (IE Glasses) will become "Glasses Smiling" for example. if it's "Glasses/Smiling.png"
+    #This also works for images with spaces in them, and underscores.

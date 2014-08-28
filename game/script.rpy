@@ -18,6 +18,8 @@ init python:
     # because they are strings, this allows us to do things like "if player.gender is boy", which is very nice and python-y
     boy = "boy"
     girl = "girl"
+   
+    
     class Player(ADVCharacter):
         # **kwargs in this context means "pass keyword arguments through"
         # for more information, see http://stackoverflow.com/questions/3394835/args-and-kwargs
@@ -28,6 +30,7 @@ init python:
             # add state here
             self.chosen_name = "No name Jenkins" # self.name is taken for the display name
             self.gender = "???"
+            
     
     class Blondie(ADVCharacter):
         def __init__(self, name, **kwargs):
@@ -60,149 +63,136 @@ init python:
 # Declare characters used by this game.
 define player = Player('Me', color="#005500")
 define blondie = Blondie('Blondie', color="#e1e823")
-define glasses = Glasses('Glasses', color="#785f24")
+define gla = Glasses('Glasses', color="#785f24")
 define raven = Raven('Raven', color="#6b4b64")
 define birthday = Birthday('Brown Haired Birthday Girl', color="#2e0c85")
 define homely = Homely('Homely', color="#d62d2d")
 define sb = Character('Storybro', color="#055000")
 
 # Declare Images used by this game.
-image bg sleepy = "overslept.jpg"
-image woody girl = "Princess Woody.jpg"
-image woody boy = "the lewd king.jpg"
-image heart = "Heart.png"
-image frogbro = "forever.jpg"
+#Images are no longer declared. They are now automatically parsed into assets from any jpg/png you place in the game folder.
+
 
 # The game starts here.
 label start:
-    scene bg sleepy
-    sb "Hello! sorry to keep you waiting!"
-    sb "Welcome to the world of magically lewd adventures!"
-    sb "My name isn't important, but people call me the Story Bro"
-    sb "This world is inhabited by creatures that we call 'Women'"
-    sb "People and Women live together by supporting each other."
-    sb "Some people play with Women"
-    sb "Some Battle with them"
-    sb "But we don't know everything about Women yet."
-    sb "There are still many mysteries to solve."
-    sb "That's why i study Women every day."
-    sb "Now Tell me, are you a boy? Or are you a girl?"
+   scene bg Overslept
+   sb ">You, being the lazy bastard that you are {p}>Decide that sleep is for the weak and engage in all-night activities on your laptop {p}>Carefully taking the time to forget what day it is tomorrow  {p}>You idiot"
+   show Glasses G19
+   gla "!!!"
+   show Glasses G2
+   gla "Hey! What are you still doing in bed?"
+   show Glasses G1
+   gla "Don't give me that kind of look! {p} You KNEW we were going to hang out today!"
+   show Glasses G3
+   gla "What! Am i not important or something? {p} Get dressed already!"
+   menu:
+        "Get Dressed":
+            $ var_blowoff = 0
+            jump dressed
+        "Blow her off":
+            $ var_blowoff = 1
+            jump blowoff
+            
+label dressed:
+    show Glasses G11
+    sb "'Fine! Fine!' {p}>You exhale as you tumble out of bed"
+    show Glasses G12
+    sb ">She breaks into a smile {p}... obviously glad you aren't your usual, lazy self"
+    sb ">You start the long tedious process of dressing"
+    sb ">So you're pretty much searching your mess of a room for anything clean to wear {p}... Which would be far easier if your room wasn't a big pile of clothing"
+    show Glasses G17
+    sb ">Glasses is just watching {p}...a funny little smile as she enjoys your futile search {p}... that is until you catch her eyes with yours"
+    show Glasses G9
+    gla "'You're such a slob!' She exclaims with laughter {p}...'One of these days we'll get blondie to teach you how she keeps her room so neat'"
+    sb "You could probably ask her to help you find some pants or something if you wanted"
     
     menu:
-        "BOY":
-            jump startboy
-        "GIRL":
-            jump startgirl
-
-label startboy:
-    $ player.gender = boy
-    show woody boy
-    sb "Now, what did you say your name was?"
+        "Stop grinning and help me find some clean pants!":
+            $ var_cleanpants = 1
+            jump cleanpants
+        "Continue searching quietly":
+            $ var_cleanpants = 0
+            jump cleanpantsquietly
+    
+    
+    
+label blowoff:
+    show Glasses G4
+    sb "'I don't wanna' {p}...You whine{p}...wrapping the blankets around yourself tighter"
+    show Glasses G5
+    sb ">Glasses Frowns {p}...You worry you might have hurt her feelings {p}...She had set aside today to spend time with you after all {p}...Worried you were both growing distant after that 'sleepover' incident"
+    sb ">And you just blew the night before playing some crappy korean MMO that wasn't even that fun"
+    sb ">Usually that kind of thing would be fine in Glasses' book, she would have joined and wasted time with you"
+    sb ">But uhh... {p}...You kind of forgot {p}...To invite her..."
+    show Glasses G21
+    gla "You were up all night weren't you?"
+    sb ">She caught you {p}...so you nod {p}...guiltily"
+    show Glasses G23
+    gla "But you were supposed to SLEEP so we could go out today!"
+    show Glasses G7
+    gla "I even got my mom to let me borrow the car later!"
+    gla "Come on! Let's go"
+    sb ">She yells while trying to pull the blankets away from you"
+    sb ">You could probably resist her, you're stronger anyway, or go off to do whatever it is she wants you to do {p}...probably shopping {p}...why women think that's a male bonding experience you'll never know"
     
     menu:
-        "RED":
-            $ player.chosen_name = "RED"
-        "BLUE":
-            $ player.chosen_name = "BLUE"
-        "YELLOW":
-           $ player.chosen_name = "YELLOW"
-        "DICKS":
-           $ player.chosen_name = "DICKS"
-    jump truestart
+        "RESIST ARREST":
+            jump resistarrest
+        "GO TO JAIL":
+            jump paythefine
 
-label startgirl:
-    $ player.gender = girl
-    show woody girl
-    sb "Now, what did you say your name was?"
-    
-    menu:
-        "RED":
-            $ player.chosen_name = "RED"
-        "BLUE":
-            $ player.chosen_name = "BLUE"
-        "YELLOW":
-           $ player.chosen_name = "YELLOW"
-        "CUNTS":
-           $ player.chosen_name = "CUNTS"
-    jump truestart
-    
-label truestart:
-    # Inserting a variable in brackets will do text substitution
-    sb "So, [player.chosen_name], are you ready?"
-
-    sb "Your very own 'Women' story is about to unfold"
-    sb "You'll face fun times, and tough challenges"
-    sb "A world of dreams and adventures with Women awaits! Let's Go!"
-    
-    # unfortunately, I didn't see a way to do string concatentation with python statements,
-    # so for cases where we want to query a variable and change text we have to use the python-equivalent
-    # calling method
-    # The statement (x if condition else y) is called ternary if; if condition evaluates to something truthy it returns the first
-    # value, otherwise it returns the second value.
-    $ sb("You grew up as an awkward. Somewhat nerdy, but generally likeable " + ("guy" if player.gender is boy else "gay") + ".")
-    $ sb(("Unluckily," if player.gender is boy else "Possibly because") + "you're not much of a hit with men, so you've grown up around women your entire life")
-    sb "Not that you mind"
-    sb "Early teenage years, this came with its perks. You ended up in an anime/video games club"
-    sb "The two always went together back then, and in your early teenage years you spent most of your lunchtime watching naruto and playing smash all day"
-    sb "Which was pretty awesome at the time"
-    sb "One of them, decides to throw a birthday party and invite everyone"
-    sb "Yes, that includes you!"
-    sb "She rents a limo, it's five girls in the car, another guy and you."
-    sb "You all pretty much spend the day eating delicious food, driving around town, playing vidya on the limo's TV and just generally do cool shit all day"
-    sb "End of the day comes though"
-    sb "The girls are planning a sleepover"
-    sb "Lucky for you, your best friend (Female) is in the car, and she's decided you're invited"
-    sb "Well, it had a good amount of begging and pleading with the birthday girl, but eventually she turns to you"
-    birthday "If your best friend vouches for you, you can hang out the night if you want?"
-    birthday "As long as you can get your parents to agree?"
-    birthday "What do you say?"
-    
-    menu:
-        "Sure! I'd love to join ya'll":
-            if player.gender == "boy":
-                jump sleepover_male
-            else:
-                jump sleepover_female
-        "I'd better not, my parents want me home for dinner":
-            jump FROG_END
-  
-label FROG_END:
-    scene frogbro at truecenter # centers image horizontally and vertically
-    sb "You say your goodbyes, smile and wave to the girls as you step out of the car"
-    sb "Your mother will be here in fifteen minutes to pick you up"
-    sb "You're having spaghetti for dinner"
-    sb "I hope it's worth it"
-    "FROG END"
-    return
-
-label sleepover_female:
-    sb "You agree to the sleepover, why not right?"
-    sb "Friends are more important than spaghetti anyway"
-    sb "plus it's been ages since you've been to a sleepover"
-    sb "However... one problem"
-    sb "Your best friend, the blonde haired boy..."
-    sb "well it might be awkward to bring him to an ALL GIRLS sleepover"
-    sb "But then again he does everything with you, and he's quite harmless"
-    sb "You've known him for six years and he's never made much of a move on anyone, he has to be right?"
-    sb "Begging and pleading, you manage to convince the birthday girl that he is a MUST HAVE and it wouldn't be the same without him"
-    sb "The others seem to agree, and he's quickly roped into your sleepover plans"
-    sb "You figure you can just tell the birthday girl's parents he's gay. That always works"
+label resistarrest:
+    show Glasses G22
+    sb ">She struggles with you for nearly four minutes, but your superior male physique wins out"
+    sb ">With a sigh, she plops her butt down near your legs in defeat"
+    show Glasses G21
+    sb ">She's got somewhat of a blank face on, thinking for a moment"
+    show Glasses G19
+    gla "Fine! Then!"
+    gla "If you don't want to leave your bed, then we're still hanging out!"
+    show Glasses GlassesThought
+    gla "I'll just have to join you..."
+    show Glasses G13
+    gla "Scoot over!"
     jump end
+    
+label paythefine:
+    show Glasses G9
+    sb ">You let her win the blanket fight{p}...Not that you couldn't have won if you had tried{p}...Oh who are you kidding{p}...She's way stronger than you"
+    show Glasses G8
+    sb ">And now she's gloating"
+    show Glasses G2
+    sb ">Well until she realizes underneath the blanket it was just you and a pair of boxers {p} also you have morning wood"
+    gla "'I... uh sorry!' {p} 'I didn't know, why didn't you say something!' {p}...She's beyond embarassed"
+    show Glasses G20
+    gla "I'll uhh, leave you alone for a while to deal with that {p} and then we can go ... ok?"
+    show Glasses G6
+    sb ">She walks out, lips prim {p}...you feel like that could have gone better"
+    jump end
+    
+    
+label cleanpants:
+    show Glasses G17
+    sb ">She quickly begins helping you find the cleanest pair of lower garments in the room"
+    sb ">Which doesn't take her long as she holds it up"
+    show Glasses G13
+    Gla "How about this? It's the only thing that doesn't smell like you've worn it twice"
+    sb "She's holding up one of Raven's skirts {p}... coincidentally she is right {p}...it's probably the cleanest thing in the room"
+    show Glasses G27
+    gla ""So?" She Asks, holding it up to her waist"
+    sb ">Of course shes asking how it would look on her, not you"
+    jump end
+label cleanpantsquietly:
+    sb ">You figure glasses probably won't help very much anyway with finding clothes"
+    sb ">Plus, most the pants on the floor are actually clean, you just had a slight...{p}...explosion{p}... in your closet over the weekend"
+    sb "Blame birthday, she needed boys clothes for some reason, and you hadn't sorted them back yet"
+    
+    
+    
 
-label sleepover_male:
-    sb "You agree to the sleepover, why not right?"
-    sb "The other guy doesn't seem to think so, he's either not invited or he has to go home for dinner"
-    sb "Friends are more important than spaghetti anyway"
-    sb "plus it's been ages since you've been to a sleepover"
-    sb "Your best friend, the black haired girl. She pretty much convinces them you have to come with"
-    sb "So this'll be interesting you think, as the limo pulls up to the lawn of the birthday girl's house"
     jump end # this is not strictly necessary, as control will fall through to the next label (I think), but good for organization
             
 label end:
-    scene heart
-    # the following are equivalent:
-    #     "THE RIDE NEVER ENDS"
-    #     narrator "THE RIDE NEVER ENDS"
-    # use this to apply the previous python equivalency to use text concatentation
-    $ narrator("THE RIDE NEVER ENDS, except here" + (", M'lady" if player.gender is girl else ""))
+    scene bg heart
+    sb "The Ride Never Ends... Except here"
     return

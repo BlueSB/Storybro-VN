@@ -1,20 +1,28 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 113, in script
-    jump start3
-ScriptError: could not find label 'start3'.
+  File "game/script.rpy", line 166, in script
+    gla "'I... uh sorry!' [p} 'I didn't know, why didn't you say something!' {p}...She's beyond embarassed"
+Exception: String u"'I... uh sorry!' [p} 'I didn't know, why didn't you say something!' {p}...She's beyond embarassed" ends with an open format operation.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 113, in script
-    jump start3
-  File "C:\Users\Blue\Desktop\Storybro\VN\renpy-6.17.7-sdk\renpy\ast.py", line 1432, in execute
-    rv = renpy.game.script.lookup(target)
-  File "C:\Users\Blue\Desktop\Storybro\VN\renpy-6.17.7-sdk\renpy\script.py", line 549, in lookup
-    raise ScriptError("could not find label '%s'." % str(label))
-ScriptError: could not find label 'start3'.
+  File "game/script.rpy", line 166, in script
+    gla "'I... uh sorry!' [p} 'I didn't know, why didn't you say something!' {p}...She's beyond embarassed"
+  File "C:\Users\Blue\Desktop\Storybro\VN\renpy-6.17.7-sdk\renpy\ast.py", line 558, in execute
+    renpy.exports.say(who, what, interact=self.interact)
+  File "C:\Users\Blue\Desktop\Storybro\VN\renpy-6.17.7-sdk\renpy\exports.py", line 925, in say
+    who(what, interact=interact)
+  File "C:\Users\Blue\Desktop\Storybro\VN\renpy-6.17.7-sdk\renpy\character.py", line 808, in __call__
+    what = what_pattern.replace("[what]", sub(what, translate=translate))
+  File "C:\Users\Blue\Desktop\Storybro\VN\renpy-6.17.7-sdk\renpy\substitutions.py", line 223, in substitute
+    s = formatter.vformat(s, (), kwargs)
+  File "/home/tom/ab/x64lucid-deps/install/lib/python2.7/string.py", line 549, in vformat
+  File "/home/tom/ab/x64lucid-deps/install/lib/python2.7/string.py", line 558, in _vformat
+  File "C:\Users\Blue\Desktop\Storybro\VN\renpy-6.17.7-sdk\renpy\substitutions.py", line 157, in parse
+    raise Exception("String {0!r} ends with an open format operation.".format(s))
+Exception: String u"'I... uh sorry!' [p} 'I didn't know, why didn't you say something!' {p}...She's beyond embarassed" ends with an open format operation.
 
 Windows-7-6.1.7601-SP1
 Ren'Py 6.17.7.521

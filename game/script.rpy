@@ -186,7 +186,7 @@ label cleanpantsquietly:
     sb ">You figure glasses probably won't help very much anyway with finding clothes"
     sb ">Plus, most the pants on the floor are actually clean, you just had a slight...{p}...explosion{p}... in your closet over the weekend"
     sb "Blame birthday, she needed boys clothes for some reason, and you hadn't sorted them back yet"
-    
+    jump end
     
     
 
